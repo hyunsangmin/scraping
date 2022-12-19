@@ -1,5 +1,8 @@
 package com.msp.hyun.Controller;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +21,19 @@ public class MainController {
 	@Autowired
 	private ScrapingService ss;
 	
+	@GetMapping("home")
+	public ModelAndView getHome() {
+		mav = new ModelAndView();
+		mav.setViewName("home");
+		return mav;
+	}
+	
 	@GetMapping("list")
-	public void getList() {
+	public ArrayList<Map<String,String>> getList() {
 		//mav = new ModelAndView();
 		//mav.setViewName("home");
 		//return mav;
-		ss.getStockPriceList();
+		return ss.getStockPriceList();
 	}
 	
 	@GetMapping("login")
